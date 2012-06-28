@@ -5,6 +5,10 @@ class Vifm < Formula
   url 'http://sourceforge.net/projects/vifm/files/vifm-0.7.3.tar.bz2'
   sha1 '2198f387d607da074fd3653b3662587a5a706785'
 
+  # depends_on "gtk"
+  depends_on "libmagic"
+  depends_on "imagemagick"
+
   # OS X provides "ncurses" not "ncursesw"
   def patches
     DATA
@@ -12,7 +16,9 @@ class Vifm < Formula
 
   def install
     system "./configure", "--disable-dependency-tracking",
-                          "--prefix=#{prefix}"
+                          "--prefix=#{prefix}",
+                          # "--with-gtk",
+                          "--with-libmagic"
     system "make install"
   end
 end
